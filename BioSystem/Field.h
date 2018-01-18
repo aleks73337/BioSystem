@@ -2,12 +2,14 @@
 #include "Cabbage.h"
 #include "Goat.h"
 #include "Wolf.h"
+#include <vector>
 
 class Field
 {
+private:
+	std::vector<Object*> objects;
 public:
-	Cabbage cabbages[10];
-	Goat goats[10];
-	Wolf wolves[10];
 	void print_field();
+	void add_object();
+
 };
