@@ -3,6 +3,7 @@
 
 class Animal : public Object
 {
+protected:
 	int satiety; //сытость
 	int gender;// пол 
 public:

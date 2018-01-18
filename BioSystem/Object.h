@@ -2,7 +2,7 @@
 
 class Object
 {
-private:
+protected:
 	int pos_x;
 	int pos_y;
 	int age;
