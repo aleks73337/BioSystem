@@ -6,7 +6,7 @@ protected:
 	int pos_x;
 	int pos_y;
 	int age;
-	virtual void reproduct();
 public:
+	virtual void reproduct();
 	Object(int _pos_x, int _pos_y, int _age);
 };
