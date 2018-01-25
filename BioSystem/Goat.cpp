@@ -9,4 +9,9 @@ void Goat::find_food()
 void Goat::eat()
 {}
 
-void Goat::reproduct() {};
+void Goat::reproduct(std::vector<Object *> *obj_ptr) {};
+
+void Goat::live(std::vector<Object *> *obj_ptr)
+{
+
+}

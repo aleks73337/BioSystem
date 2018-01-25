@@ -11,5 +11,5 @@ private:
 public:
 	void print_field();
 	void add_object();
-
+        void live_();
 };

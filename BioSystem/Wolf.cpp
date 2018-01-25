@@ -10,4 +10,9 @@ void Wolf::find_food()
 void Wolf::eat()
 {}
 
-void Wolf::reproduct() {};
+void Wolf::reproduct(std::vector<Object *> *obj_ptr) {}
+
+void Wolf::live(std::vector<Object *> *obj_ptr)
+{
+
+}
