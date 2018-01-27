@@ -9,7 +9,7 @@ protected:
 		int move_to_x;
 		int move_to_y;
 public:
-	virtual void move(int p_x, int p_y)=0;
+	virtual void move(int p_x, int p_y, std::vector<Object*> obj_ptr)=0;
 	virtual std::pair<int,int> find_food()=0;
 	virtual void eat(std::pair<int, int>food_coords)=0;
 	virtual void reproduct() {};

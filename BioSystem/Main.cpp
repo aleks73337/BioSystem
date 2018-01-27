@@ -4,17 +4,15 @@
 
 int main()
 {
-	Cabbage cab(1, 2, 0);
+	Cabbage cab(1, 4, 0);
 	Field field;
 	field.add_object(&cab);
-	Goat goat(1, 2, 3, 100, 0);
+	Goat goat(1, 2, 3, 30, 0);
 	field.add_object(&goat);
-	std::cin.get();
-	for (int i = 0; i < 10; i++)
-	{	
+	for (int i = 0; i < 100; i++)
+	{
 		field.live_();
 		field.print_field();
 		std::cin.get();
-		system("cls");
 	}
 }
