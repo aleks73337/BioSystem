@@ -1,20 +1,27 @@
 #include "Cabbage.h"
-
+int Cabbage::R = 5;
+int Cabbage::age_death = 5;
 
 Cabbage::Cabbage(int _pos_x, int _pos_y, int _age) : Object(_pos_x, _pos_y, _age) {};
+int Cabbage::retAge() { return(age); };
 
 void Cabbage::live(std::vector<Object*> *obj_ptr)
 {
+	if (age == age_death)
+	{
+		age = -1;
+	}
     if(age==cabrep_age)
     {
         reproduct(obj_ptr);
     }
+	age++;
 }
 
 void Cabbage::reproduct(std::vector<Object*> *obj_ptr)
 {
     srand ( time(NULL) );
-    numb_of_seed=1;
+    numb_of_seed=rand()%5;
     for(int i=0;i<numb_of_seed;i++)
     {
         int x=rand()%XMAX;

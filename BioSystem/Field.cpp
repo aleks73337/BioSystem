@@ -1,5 +1,6 @@
 #include "Field.h"
 
+
 void Field::print_field()
 {
     char fld[XMAX+1][YMAX+1];
@@ -22,7 +23,10 @@ void Field::print_field()
         std::cout<<std::endl;
     }
 };
-void Field::add_object() {};
+void Field::add_object(Object* obj_p) 
+{
+	objects.push_back(obj_p);
+};
 void Field::live_()
 {
     for(int i=0;i<objects.size();i++)

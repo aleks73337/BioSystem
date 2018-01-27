@@ -10,6 +10,6 @@ private:
 	std::vector<Object*> objects;
 public:
 	void print_field();
-	void add_object();
-        void live_();
+	void add_object(Object* obj_p);
+    void live_();
 };

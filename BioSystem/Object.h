@@ -13,11 +13,14 @@ protected:
 	int pos_x;
 	int pos_y;
 	int age;
+	static int age_death;
+	static int rep_age;
 public:
-        virtual void reproduct(std::vector<Object*> *obj_ptr);
-        virtual void live(std::vector<Object*> *obj_ptr);
-        virtual char retclass();
-        virtual int retX();
-        virtual int retY();
+        virtual void reproduct(std::vector<Object*> *obj_ptr)=0;
+        virtual void live(std::vector<Object*> *obj_ptr)=0;
+		virtual int retAge();
+		virtual char retclass()=0;
+		virtual int retX();
+		virtual int retY();
 	Object(int _pos_x, int _pos_y, int _age);
 };

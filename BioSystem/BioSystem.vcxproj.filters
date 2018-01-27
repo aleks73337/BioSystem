@@ -15,9 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source.cpp">
-      <Filter>Файлы ресурсов</Filter>
-    </ClCompile>
     <ClCompile Include="Goat.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -35,6 +32,9 @@
     </ClCompile>
     <ClCompile Include="Cabbage.cpp">
       <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Файлы ресурсов</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
