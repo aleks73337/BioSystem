@@ -3,6 +3,9 @@
 
 class Wolf : public Animal
 {
+	const static int age_death;
+	const static int rep_age;
+	const static int R;
 public:
 	virtual void move(int p_x, int p_y);
 	virtual std::pair<int,int> find_food();

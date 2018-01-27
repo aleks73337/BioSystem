@@ -4,6 +4,7 @@
 
 int main()
 {
+	setlocale(LC_ALL, "RUS");
 	Cabbage cab(1, 4, 0);
 	Field field;
 	field.add_object(&cab);

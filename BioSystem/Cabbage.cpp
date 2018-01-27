@@ -1,6 +1,6 @@
 #include "Cabbage.h"
-int Cabbage::R = 5;
-int Cabbage::age_death = 5;
+const int Cabbage::R = 5;
+const int Cabbage::age_death = 5;
 
 Cabbage::Cabbage(int _pos_x, int _pos_y, int _age) : Object(_pos_x, _pos_y, _age) {};
 int Cabbage::retAge() { return(age); };

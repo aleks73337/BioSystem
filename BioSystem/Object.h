@@ -13,8 +13,6 @@ protected:
 	int pos_x;
 	int pos_y;
 	int age;
-	static int age_death;
-	static int rep_age;
 public:
         virtual void reproduct(std::vector<Object*> *obj_ptr)=0;
         virtual void live(std::vector<Object*> *obj_ptr)=0;

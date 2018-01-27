@@ -1,3 +1,85 @@
 #include "Animal.h"
 
-Animal::Animal(int _pos_x, int _pos_y, int _age, int _satiety, int _gender) : Object(_pos_x, _pos_y, _age), satiety(_satiety), gender(_gender), move_to_x(0),move_to_y(0) {};
+int Animal::grid[50][50] = { 0 };
+Animal::Animal(int _pos_x, int _pos_y, int _age, int _satiety, int _gender) : Object(_pos_x, _pos_y, _age), satiety(_satiety), gender(_gender) {};
+
+void Animal::field_matrix(std::vector<Object*> obj_ptr)
+{
+	for (int i = 0; i < 50; i++)
+	{
+		for (int j = 0; j < 50; j++)
+		{
+			grid[i][j] = -2;
+		}
+	}
+
+	for (int i = 0; i < obj_ptr.size(); i++)
+	{
+		grid[obj_ptr[i]->retX()][obj_ptr[i]->retY()] = -1;
+	}
+};
+
+bool Animal::lee(int ax, int ay, int bx, int by)   // поиск пути из €чейки (ax, ay) в €чейку (bx, by)
+{
+	const int W = 50;         // ширина рабочего пол€
+	const int H = 50;         // высота рабочего пол€
+	const int WALL = -1;         // непроходима€ €чейка
+	const int BLANK = -2;		 //свободна€ €чейка
+	int dx[4] = { 1, 0, -1, 0 };   // смещени€, соответствующие сосед€м €чейки
+	int dy[4] = { 0, 1, 0, -1 };   // справа, снизу, слева и сверху
+	int d, x, y, k;
+	bool stop;
+
+	if (grid[ay][ax] == WALL || grid[by][bx] == WALL) return false;
+
+	// распространение волны
+	d = 0;
+	grid[ay][ax] = 0;
+	do {
+		stop = true;
+		for (y = 0; y < H; ++y)
+			for (x = 0; x < W; ++x)
+				if (grid[y][x] == d)
+				{
+					for (k = 0; k < 4; ++k)
+					{
+						int iy = y + dy[k], ix = x + dx[k];
+						if (iy >= 0 && iy < H && ix >= 0 && ix < W &&
+							grid[iy][ix] == BLANK)
+						{
+							stop = false;
+							grid[iy][ix] = d + 1;
+						}
+					}
+				}
+		d++;
+	} while (!stop && grid[by][bx] == BLANK);
+
+	if (grid[by][bx] == BLANK) return false;
+
+	//восстановление пути
+	int len = grid[by][bx];
+	x = bx;
+	y = by;
+	d = len;
+	while (d > 0)
+	{
+		px[d] = x;
+		py[d] = y;
+		d--;
+		for (k = 0; k < 4; ++k)
+		{
+			int iy = y + dy[k], ix = x + dx[k];
+			if (iy >= 0 && iy < H && ix >= 0 && ix < W &&
+				grid[iy][ix] == d)
+			{
+				x = x + dx[k];
+				y = y + dy[k];
+				break;
+			}
+		}
+	}
+	px[0] = ax;
+	py[0] = ay;
+	return true;
+}
