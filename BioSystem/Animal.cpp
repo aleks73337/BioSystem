@@ -1,9 +1,9 @@
 #include "Animal.h"
-
+#include <map>
 int Animal::grid[50][50] = { 0 };
 Animal::Animal(int _pos_x, int _pos_y, int _age, int _satiety, int _gender) : Object(_pos_x, _pos_y, _age), satiety(_satiety), gender(_gender) {};
 
-void Animal::field_matrix(std::vector<Object*> obj_ptr)
+void Animal::fill_grid(std::vector<Object*> obj_ptr)
 {
 	for (int i = 0; i < 50; i++)
 	{
@@ -19,7 +19,7 @@ void Animal::field_matrix(std::vector<Object*> obj_ptr)
 	}
 };
 
-bool Animal::lee(int ax, int ay, int bx, int by)   // поиск пути из €чейки (ax, ay) в €чейку (bx, by)
+std::pair<int,std::pair<int,int>> Animal::lee(int ax, int ay, int bx, int by)   // поиск пути из €чейки (ax, ay) в €чейку (bx, by)
 {
 	const int W = 50;         // ширина рабочего пол€
 	const int H = 50;         // высота рабочего пол€
@@ -29,8 +29,13 @@ bool Animal::lee(int ax, int ay, int bx, int by)   // поиск пути из €чейки (ax, 
 	int dy[4] = { 0, 1, 0, -1 };   // справа, снизу, слева и сверху
 	int d, x, y, k;
 	bool stop;
+	std::pair<int, std::pair<int,int>> step;
 
-	if (grid[ay][ax] == WALL || grid[by][bx] == WALL) return false;
+	if (grid[ay][ax] == WALL || grid[by][bx] == WALL)
+	{
+		step.first = -1;
+		return step;
+	}
 
 	// распространение волны
 	d = 0;
@@ -55,10 +60,15 @@ bool Animal::lee(int ax, int ay, int bx, int by)   // поиск пути из €чейки (ax, 
 		d++;
 	} while (!stop && grid[by][bx] == BLANK);
 
-	if (grid[by][bx] == BLANK) return false;
+	if (grid[ay][ax] == WALL || grid[by][bx] == WALL)
+	{
+		step.first = -1;
+		return step;
+	}
 
 	//восстановление пути
 	int len = grid[by][bx];
+	int px[XMAX], py[YMAX];
 	x = bx;
 	y = by;
 	d = len;
@@ -81,5 +91,9 @@ bool Animal::lee(int ax, int ay, int bx, int by)   // поиск пути из €чейки (ax, 
 	}
 	px[0] = ax;
 	py[0] = ay;
-	return true;
+
+	step.first = len;
+	step.second.first = px[1];
+	step.second.second = py[1];
+	return step;
 }
