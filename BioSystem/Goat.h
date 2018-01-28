@@ -8,7 +8,7 @@ private:
 	const static int rep_age;
 	const static int R;
 public:
-	virtual std::pair<int, int> find_food(std::vector<Object *> obj_ptr);
+	virtual std::pair<int, int> find_food(std::vector<Object *> obj_ptr); //возвращает x,y координаты цели
 	virtual void eat(std::pair<int, int>food_coords);
     virtual void reproduct(std::vector<Object *> *obj_ptr);
     virtual void live(std::vector<Object *> *obj_ptr); 

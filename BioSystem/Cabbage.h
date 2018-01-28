@@ -1,12 +1,11 @@
 #pragma once
 #include "Object.h"
-const int cabrep_age = 3;
 class Cabbage : public Object
 {
 private:
-	const static int age_death;
-	const static int rep_age;
-	const static int R;
+	static const int age_death;
+	static const int rep_age;
+	static const int R;
     int numb_of_seed;
 public:
 	Cabbage(int _pos_x, int _pos_y, int _age);

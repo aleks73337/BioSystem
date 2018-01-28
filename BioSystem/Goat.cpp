@@ -38,16 +38,15 @@ std::pair<int,int> Goat::find_food(std::vector<Object *> obj_ptr)
 	}
 	std::pair<int, int> food_coords;
 	int min_length = 1000;
-	for (int i = 0; i < targets.size(); i++)
+	for (int i = 0; i < targ_coords.size(); i++)
 	{
-		if (targ_coords[i].first < min_length)
+		if (targ_coords[i].first>=0 && targ_coords[i].first <= R && targ_coords[i].first< min_length)
 		{
 			min_length = targ_coords[i].first;
 			food_coords.first = targets[i].first;
 			food_coords.second = targets[i].second;
 		}
 	}
-	std::cout << min_length << std::endl;
 	return(food_coords);
 };
 
@@ -74,7 +73,7 @@ void Goat::live(std::vector<Object *> *obj_ptr)
 	else if  (satiety <= 50)
 	{
 		std::pair<int,int> food_coords=find_food(*obj_ptr);
-		std::cout << food_coords.first << "  " << food_coords.second;
+		std::cout << food_coords.first << "  " << food_coords.second<<std::endl;
 		move(food_coords.first, food_coords.second, *obj_ptr);
 	}
 	else

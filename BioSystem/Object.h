@@ -7,6 +7,7 @@
 
 const int XMAX=50;
 const int YMAX=50;
+
 class Object
 {
 protected:
