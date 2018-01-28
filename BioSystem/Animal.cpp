@@ -21,6 +21,7 @@ void Animal::fill_grid(std::vector<Object*> obj_ptr)
 
 std::pair<int,std::pair<int,int>> Animal::lee(int ax, int ay, int bx, int by)   // поиск пути из €чейки (ax, ay) в €чейку (bx, by)
 {
+
 	const int W = XMAX;         // ширина рабочего пол€
 	const int H = YMAX;         // высота рабочего пол€
 	const int WALL = -1;         // непроходима€ €чейка
@@ -38,7 +39,7 @@ std::pair<int,std::pair<int,int>> Animal::lee(int ax, int ay, int bx, int by)   
 		step.first = -1;
 		return step;
 	}
-
+	grid[bx][by] = -2;
 	// распространение волны
 	d = 0;
 	grid[ay][ax] = 0;
@@ -60,7 +61,7 @@ std::pair<int,std::pair<int,int>> Animal::lee(int ax, int ay, int bx, int by)   
 						}
 					}
 				}
-		d++;
+		++d;
 	} while (!stop && grid[by][bx] == BLANK);
 
 	if (grid[ay][ax] == WALL || grid[by][bx] == WALL) //путь не найден
@@ -70,7 +71,7 @@ std::pair<int,std::pair<int,int>> Animal::lee(int ax, int ay, int bx, int by)   
 	}
 
 	//восстановление пути
-	len = len = grid[by][bx];
+	len = grid[by][bx];
 	x = bx;
 	y = by;
 	while (d > 0)

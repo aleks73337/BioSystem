@@ -2,8 +2,8 @@
 #include <map>
 #include <vector>
 const int Goat::R = 10;
-const int Goat::age_death = 5;
-const int Goat::rep_age = 2;
+const int Goat::age_death = 15;
+const int Goat::rep_age = 10;
 
 Goat::Goat(int _pos_x, int _pos_y, int _age, int _satiety, int _gender) : Animal(_pos_x, _pos_y, _age, _satiety, _gender) {};
 
@@ -19,7 +19,6 @@ void Goat::move(int p_x, int p_y, std::vector<Object*> obj_ptr)
 
 std::pair<int,int> Goat::find_food(std::vector<Object *> obj_ptr)
 {
-	fill_grid(obj_ptr);
 	std::vector <std::pair<int,int>> targets; //координаты целей
 	std::vector <std::pair< int, std::pair< int, int >>> targ_coords; // длинны пути до целей, координаты следующего шага к цели
 	for (int i = 0; i < obj_ptr.size(); i++)
@@ -34,6 +33,7 @@ std::pair<int,int> Goat::find_food(std::vector<Object *> obj_ptr)
 	}
 	for (int i = 0; i < targets.size(); i++)
 	{
+		fill_grid(obj_ptr);
 		targ_coords.push_back(lee(pos_x, pos_y, targets[i].first, targets[i].second));
 	}
 	std::pair<int, int> food_coords;
@@ -68,10 +68,11 @@ void Goat::reproduct(std::vector<Object *> *obj_ptr)
 
 void Goat::live(std::vector<Object *> *obj_ptr)
 {
-	satiety--;
+	satiety += -10;
 	if (satiety == 0) {} //death
 	else if  (satiety <= 50)
 	{
+		fill_grid(*obj_ptr);
 		std::pair<int,int> food_coords=find_food(*obj_ptr);
 		std::cout << food_coords.first << "  " << food_coords.second<<std::endl;
 		move(food_coords.first, food_coords.second, *obj_ptr);
@@ -79,6 +80,7 @@ void Goat::live(std::vector<Object *> *obj_ptr)
 	else
 	{
 		if (retAge() > rep_age) { reproduct(obj_ptr); }
+		
 	}
 
 }

@@ -1,6 +1,5 @@
 #include "Field.h"
 #include <iostream>
-#include <windows.h>
 
 int main()
 {
@@ -17,6 +16,5 @@ int main()
 		field.live_();
 		field.print_field();
 		std::cin.get();
-		//field.print_field();
 	}
 }

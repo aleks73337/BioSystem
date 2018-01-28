@@ -1,7 +1,7 @@
 #include "Cabbage.h"
 const int Cabbage::R = 5;
-const int Cabbage::age_death = 5;
-const int Cabbage::rep_age = 3;
+const int Cabbage::age_death = 10;
+const int Cabbage::rep_age = 8;
 
 Cabbage::Cabbage(int _pos_x, int _pos_y, int _age) : Object(_pos_x, _pos_y, _age) {};
 int Cabbage::retAge() { return(age); };

@@ -1,6 +1,5 @@
 #include "Field.h"
 
-
 void Field::print_field()
 {
     char fld[XMAX+1][YMAX+1];
