@@ -10,12 +10,10 @@ std::pair<int,int> Wolf::find_food()
 	return(a);
 }
 
-void Wolf::eat()
-{}
 
 void Wolf::reproduct(std::vector<Object *> *obj_ptr) {}
 
-void Wolf::live(std::vector<Object *> *obj_ptr)
+bool Wolf::live(std::vector<Object *> *obj_ptr)
 {
-
+	return true;
 }

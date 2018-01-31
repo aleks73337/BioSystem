@@ -6,17 +6,20 @@ const int Cabbage::rep_age = 8;
 Cabbage::Cabbage(int _pos_x, int _pos_y, int _age) : Object(_pos_x, _pos_y, _age) {};
 int Cabbage::retAge() { return(age); };
 
-void Cabbage::live(std::vector<Object*> *obj_ptr)
+bool Cabbage::live(std::vector<Object*> *obj_ptr)
 {
 	if (age == age_death)
 	{
 		age = -1;
+		return false;
 	}
     if(age==rep_age)
     {
         reproduct(obj_ptr);
+		return true;
     }
 	age++;
+	return true;
 }
 
 void Cabbage::reproduct(std::vector<Object*> *obj_ptr)

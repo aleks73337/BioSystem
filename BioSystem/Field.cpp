@@ -28,8 +28,12 @@ void Field::add_object(Object* obj_p)
 };
 void Field::live_()
 {
-    for(int i=0;i<objects.size();i++)
+    for(auto object :objects)
     {
-    objects[i]->live(&objects);
+		if (object->live(&objects) == false)
+		{
+			delete object;
+			object = nullptr;
+		}
     }
 }

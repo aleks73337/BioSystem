@@ -16,10 +16,11 @@ protected:
 	int age;
 public:
         virtual void reproduct(std::vector<Object*> *obj_ptr)=0;
-        virtual void live(std::vector<Object*> *obj_ptr)=0;
+        virtual bool live(std::vector<Object*> *obj_ptr)=0;
 		virtual int retAge();
 		virtual char retclass()=0;
 		virtual int retX();
 		virtual int retY();
 	Object(int _pos_x, int _pos_y, int _age);
+	~Object() {};
 };

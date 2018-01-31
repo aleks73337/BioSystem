@@ -9,9 +9,9 @@ class Wolf : public Animal
 public:
 	virtual void move(int p_x, int p_y);
 	virtual std::pair<int,int> find_food();
-	virtual void eat();
+	virtual void eat(std::pair<int, int> food_coords, std::vector<Object*> obj_ptr) {};
         virtual void reproduct(std::vector<Object *> *obj_ptr);
-        virtual void live(std::vector<Object *> *obj_ptr);
+        virtual bool live(std::vector<Object *> *obj_ptr);
 		//virtual char retclass();
 		//virtual int retX();
 		//virtual int retY();

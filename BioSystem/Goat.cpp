@@ -50,8 +50,14 @@ std::pair<int,int> Goat::find_food(std::vector<Object *> obj_ptr)
 	return(food_coords);
 };
 
-void Goat::eat(std::pair<int,int>food_coords)
-{}
+void Goat::eat(std::pair<int,int>food_coords, std::vector<Object*> obj_ptr)
+{
+	for (int i = 0; i < obj_ptr.size(); i++)
+	{
+		if (obj_ptr[i]->retclass() == 'c' && obj_ptr[i]->retX() == food_coords.first && obj_ptr[i]->retY() == food_coords.second)
+			obj_ptr[i] = nullptr;
+	}
+}
 
 void Goat::reproduct(std::vector<Object *> *obj_ptr) 
 {
@@ -66,21 +72,36 @@ void Goat::reproduct(std::vector<Object *> *obj_ptr)
 	obj_ptr->push_back(new_goat);
 };
 
-void Goat::live(std::vector<Object *> *obj_ptr)
+bool Goat::live(std::vector<Object *> *obj_ptr)
 {
-	satiety += -10;
-	if (satiety == 0) {} //death
+	satiety -= 10;
+	if (satiety <= 0) 
+	{
+		return false;
+	}
 	else if  (satiety <= 50)
 	{
 		fill_grid(*obj_ptr);
 		std::pair<int,int> food_coords=find_food(*obj_ptr);
 		std::cout << food_coords.first << "  " << food_coords.second<<std::endl;
-		move(food_coords.first, food_coords.second, *obj_ptr);
+		if (food_coords.first == pos_x && food_coords.second == pos_y)
+		{
+			eat(food_coords, *obj_ptr);
+			return true;
+		}
+		else
+		{
+			move(food_coords.first, food_coords.second, *obj_ptr);
+			return true;
+		}
 	}
 	else
 	{
-		if (retAge() > rep_age) { reproduct(obj_ptr); }
-		
+		if (retAge() > rep_age) 
+		{ 
+			reproduct(obj_ptr); 
+			return true;
+		}
+		return true;
 	}
-
 }

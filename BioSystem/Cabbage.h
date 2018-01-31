@@ -10,7 +10,7 @@ private:
 public:
 	Cabbage(int _pos_x, int _pos_y, int _age);
         virtual void reproduct(std::vector<Object *> *obj_ptr);
-        virtual void live(std::vector<Object *> *obj_ptr);
+        virtual bool live(std::vector<Object *> *obj_ptr);
 		virtual int retAge();
 		virtual char retclass();
         virtual int retX();

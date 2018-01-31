@@ -9,7 +9,7 @@ int main()
 	Field field;
 	field.add_object(&cab);
 	field.add_object(&cab2);
-	Goat goat(1, 2, 3, 30, 0);
+	Goat goat(1, 2, 3, 50, 0);
 	field.add_object(&goat);
 	for (int i = 0; i < 100; i++)
 	{
