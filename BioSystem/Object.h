@@ -22,5 +22,4 @@ public:
 		virtual int retX();
 		virtual int retY();
 	Object(int _pos_x, int _pos_y, int _age);
-	~Object() {};
 };

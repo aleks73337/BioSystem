@@ -1,16 +1,14 @@
 #include "Field.h"
 #include <iostream>
+#include <conio.h>
 
 int main()
 {
 	setlocale(LC_ALL, "RUS");
-	Cabbage cab(10, 4, 0);
-	Cabbage cab2(5, 8, 0);
 	Field field;
-	field.add_object(&cab);
-	field.add_object(&cab2);
-	Goat goat(1, 2, 3, 50, 0);
-	field.add_object(&goat);
+	field.add_object(new Cabbage(5, 4, 14));
+	//field.add_object(new Wolf(2, 2, 3, 40, 0));
+	field.add_object(new Goat(2, 2, 3, 40, 0));
 	for (int i = 0; i < 100; i++)
 	{
 		field.live_();

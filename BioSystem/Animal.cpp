@@ -12,9 +12,9 @@ void Animal::fill_grid(std::vector<Object*> obj_ptr)
 			grid[i][j] = -2;
 		}
 	}
-
 	for (int i = 0; i < obj_ptr.size(); i++)
 	{
+		if (obj_ptr[i])
 		grid[obj_ptr[i]->retX()][obj_ptr[i]->retY()] = -1;
 	}
 };
@@ -33,16 +33,14 @@ std::pair<int,std::pair<int,int>> Animal::lee(int ax, int ay, int bx, int by)   
 	int d, x, y, k;
 	bool stop;
 	std::pair<int, std::pair<int,int>> step;
-
+	grid[bx][by] = -2;
+	d = 0;
+	grid[ay][ax] = 0;
 	if (grid[ay][ax] == WALL || grid[by][bx] == WALL)
 	{
 		step.first = -1;
 		return step;
 	}
-	grid[bx][by] = -2;
-	// распространение волны
-	d = 0;
-	grid[ay][ax] = 0;
 
 	do {
 		stop = true;
