@@ -1,35 +1,19 @@
+#pragma once
 #include "Animal.h"
 #include <map>
 int Animal::grid[50][50] = { 0 };
 Animal::Animal(const int& _pos_x, const int& _pos_y, const int& _age, const int& _satiety, const int& _gender) : Object(_pos_x, _pos_y, _age), satiety(_satiety), gender(_gender) {};
 
-void Animal::fill_grid(std::vector<Object*> obj_ptr)
+std::pair<int,std::pair<int,int>> Animal::lee(int& ax, int& ay, int& bx, int& by)   // поиск пути из €чейки (ax, ay) в €чейку (bx, by)
 {
-	for (int i = 0; i < XMAX; i++)
-	{
-		for (int j = 0; j < YMAX; j++)
-		{
-			grid[i][j] = -2;
-		}
-	}
-	for (int i = 0; i < obj_ptr.size(); i++)
-	{
-		if (obj_ptr[i])
-		grid[obj_ptr[i]->retX()][obj_ptr[i]->retY()] = -1;
-	}
-};
-
-std::pair<int,std::pair<int,int>> Animal::lee(int ax, int ay, int bx, int by)   // поиск пути из €чейки (ax, ay) в €чейку (bx, by)
-{
-
 	const int W = XMAX;         // ширина рабочего пол€
 	const int H = YMAX;         // высота рабочего пол€
 	const int WALL = -1;         // непроходима€ €чейка
 	const int BLANK = -2;         // свободна€ непомеченна€ €чейка
-	int px[W], py[W];      // координаты €чеек, вход€щих в путь
+	int px[W*W], py[H*H];      // координаты €чеек, вход€щих в путь
 	int len;                       // длина пути
-	int dx[4] = { 1, 0, -1, 0 };   // смещени€, соответствующие сосед€м €чейки
-	int dy[4] = { 0, 1, 0, -1 };   // справа, снизу, слева и сверху
+	const int dx[4] = { 1, 0, -1, 0 };   // смещени€, соответствующие сосед€м €чейки
+	const int dy[4] = { 0, 1, 0, -1 };   // справа, снизу, слева и сверху
 	int d, x, y, k;
 	bool stop;
 	std::pair<int, std::pair<int,int>> step;
@@ -98,7 +82,7 @@ std::pair<int,std::pair<int,int>> Animal::lee(int ax, int ay, int bx, int by)   
 	return step;
 }
 
-void Animal::move(int p_x, int p_y, std::vector<Object*> obj_ptr)
+void Animal::move(int& p_x, int& p_y, std::vector<Object*>& obj_ptr)
 {
 	fill_grid(obj_ptr);
 	std::pair<int, std::pair<int, int>> step = lee(pos_x, pos_y, p_x, p_y);
@@ -106,7 +90,7 @@ void Animal::move(int p_x, int p_y, std::vector<Object*> obj_ptr)
 	pos_y = step.second.second;
 };
 
-void Animal::eat(std::pair<int, int>food_coords, std::vector<Object*>& obj_ptr)
+void Animal::eat(std::pair<int, int>& food_coords, std::vector<Object*>& obj_ptr)
 {
 	for (auto& obj : obj_ptr)
 	{
@@ -132,13 +116,13 @@ bool Animal::live(std::vector<Object *> *obj_ptr)
 {
 	satiety -= get_hunger();
 	age++;
-	fill_grid(*obj_ptr);
 	if (satiety <= 0 || age==get_age_death())
 	{
 		return false;
 	}
 	else if (satiety <= 50)
 	{
+		fill_grid(*obj_ptr);
 		std::pair<int, int> food_coords = find_food(*obj_ptr);
 		if (food_coords.first == 0 && food_coords.second == 0) { return true; }
 		move(food_coords.first, food_coords.second, *obj_ptr);
@@ -148,12 +132,13 @@ bool Animal::live(std::vector<Object *> *obj_ptr)
 	}
 	else if (retAge() == get_rep_age())
 	{
+		fill_grid(*obj_ptr);
 		reproduct(obj_ptr);
 		return true;
 	}
 }
 
-std::pair<int, int> Animal::find_food(std::vector<Object *> obj_ptr)
+std::pair<int, int> Animal::find_food(std::vector<Object*>& obj_ptr)
 {
 	std::vector <std::pair<int, int>> targets; //координаты целей
 	std::vector <std::pair< int, std::pair< int, int >>> targ_coords; // длинны пути до целей, координаты следующего шага к цели

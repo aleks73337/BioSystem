@@ -8,6 +8,7 @@ class Field
 {
 private:
 	std::vector<Object*> objects;
+	char field[XMAX][YMAX];
 public:
 	void print_field();
 	void add_object(Object* obj_p);

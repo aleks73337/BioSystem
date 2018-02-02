@@ -15,6 +15,9 @@ protected:
 	int pos_y;
 	int age;
 	const static int R;
+	static int grid[XMAX][YMAX];
+	static void fill_grid(std::vector<Object*>& obj_ptr);
+
 public:
         virtual void reproduct(std::vector<Object*> *obj_ptr)=0;
         virtual bool live(std::vector<Object*> *obj_ptr)=0;

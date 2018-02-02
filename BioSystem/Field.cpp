@@ -1,29 +1,33 @@
 #include "Field.h"
+#include <algorithm> 
 
 void Field::print_field()
 {
-	char fld[XMAX + 1][YMAX + 1];
-    for(int i=0;i<=XMAX;i++)
-    {
-		for (int j = 0; j <= YMAX; j++)
-		{
-			fld[i][j] = '_';
-		}
-    }
-    for(auto obj: objects)
+	for (int i = 0; i < XMAX; i++)
 	{
-       int X,Y;
-	   if (!obj) { continue; };
-       X=obj->retX();
-       Y=obj->retY();
-       fld[X][Y]=obj->retclass();
-    }
-    for(int i=0;i<=XMAX;i++)
-    {
-        for(int j=0;j<=YMAX;j++)
-            std::cout<<fld[i][j];
-        std::cout<<std::endl;
-    }
+		for (int j = 0; j < YMAX; j++)
+		{
+			field[i][j] = '_';
+		}
+	}
+
+	for ( int i = 0; i < objects.size() ; ++i )
+	{
+		if (objects[i])
+		{
+			field[objects[i]->retX()][objects[i]->retY()] = objects[i]->retclass();
+		}
+	}
+
+	for (int i = 0; i < XMAX; i++)
+	{
+		for (int j = 0; j < YMAX; j++)
+		{
+			std::cout<<field[i][j];
+		}
+		std::cout << std::endl;
+	}
+
 };
 
 void Field::add_object(Object* obj_p) 
@@ -42,4 +46,21 @@ void Field::live_()
 		}
 		len = objects.size();
     }
+
+	bool flag;
+	do
+	{
+		flag = false;
+		for (std::vector<Object*>::const_iterator it = objects.begin() + 1;
+			it != objects.end();++it)
+		{
+			if (!(*it))
+			{
+				objects.erase(it);
+				flag = true;
+				break;
+			}
+		}
+		
+	} while (flag);
 }
