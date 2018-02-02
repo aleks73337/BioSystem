@@ -7,12 +7,13 @@ private:
 	const static int age_death;
 	const static int rep_age;
 	const static int R;
+	const static int hunger; //единиц сытости за ход
+	virtual const int get_age_death();
+	virtual const int get_rep_age();
+	virtual const int get_R();
+	virtual const int get_hunger();
 public:
-	virtual std::pair<int, int> find_food(std::vector<Object *> obj_ptr); //возвращает x,y координаты цели
-	virtual void eat(std::pair<int, int> food_coords, std::vector<Object*>& obj_ptr);
     virtual void reproduct(std::vector<Object *> *obj_ptr);
-    virtual bool live(std::vector<Object *> *obj_ptr); 
 	virtual char retclass() { return('g'); };
-	virtual void move(int p_x, int p_y, std::vector<Object*> obj_ptr);
-	Goat(int _pos_x, int _pos_y, int _age, int _satiety, int _gender);
+	Goat(const int& _pos_x, const int& _pos_y, const int& _age, const int& _satiety, const int& _gender);
 };

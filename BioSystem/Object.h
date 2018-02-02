@@ -14,6 +14,7 @@ protected:
 	int pos_x;
 	int pos_y;
 	int age;
+	const static int R;
 public:
         virtual void reproduct(std::vector<Object*> *obj_ptr)=0;
         virtual bool live(std::vector<Object*> *obj_ptr)=0;
@@ -21,5 +22,5 @@ public:
 		virtual char retclass()=0;
 		virtual int retX();
 		virtual int retY();
-	Object(int _pos_x, int _pos_y, int _age);
+	Object(const int& _pos_x, const int& _pos_y, const int& _age);
 };

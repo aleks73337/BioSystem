@@ -1,7 +1,7 @@
 #include "Animal.h"
 #include <map>
 int Animal::grid[50][50] = { 0 };
-Animal::Animal(int _pos_x, int _pos_y, int _age, int _satiety, int _gender) : Object(_pos_x, _pos_y, _age), satiety(_satiety), gender(_gender) {};
+Animal::Animal(const int& _pos_x, const int& _pos_y, const int& _age, const int& _satiety, const int& _gender) : Object(_pos_x, _pos_y, _age), satiety(_satiety), gender(_gender) {};
 
 void Animal::fill_grid(std::vector<Object*> obj_ptr)
 {
@@ -97,3 +97,91 @@ std::pair<int,std::pair<int,int>> Animal::lee(int ax, int ay, int bx, int by)   
 	step.second.second = py[1];
 	return step;
 }
+
+void Animal::move(int p_x, int p_y, std::vector<Object*> obj_ptr)
+{
+	fill_grid(obj_ptr);
+	std::pair<int, std::pair<int, int>> step = lee(pos_x, pos_y, p_x, p_y);
+	pos_x = step.second.first;
+	pos_y = step.second.second;
+};
+
+void Animal::eat(std::pair<int, int>food_coords, std::vector<Object*>& obj_ptr)
+{
+	for (auto& obj : obj_ptr)
+	{
+		if (obj && obj->retX() == food_coords.first && obj->retY() == food_coords.second)
+		{
+			if (retclass() == 'w' && obj->retclass() == 'g')
+			{
+				satiety += 50;
+				delete obj;
+				obj = nullptr;
+			}
+			if (retclass() == 'g' && obj->retclass() == 'c')
+			{
+				satiety += 20;
+				delete obj;
+				obj = nullptr;
+			}
+		}
+	}
+}
+
+bool Animal::live(std::vector<Object *> *obj_ptr)
+{
+	satiety -= get_hunger();
+	age++;
+	fill_grid(*obj_ptr);
+	if (satiety <= 0 || age==get_age_death())
+	{
+		return false;
+	}
+	else if (satiety <= 50)
+	{
+		std::pair<int, int> food_coords = find_food(*obj_ptr);
+		if (food_coords.first == 0 && food_coords.second == 0) { return true; }
+		move(food_coords.first, food_coords.second, *obj_ptr);
+		if (pos_x == food_coords.first && pos_y == food_coords.second)
+			eat(food_coords, *obj_ptr);
+		return true;
+	}
+	else if (retAge() == get_rep_age())
+	{
+		reproduct(obj_ptr);
+		return true;
+	}
+}
+
+std::pair<int, int> Animal::find_food(std::vector<Object *> obj_ptr)
+{
+	std::vector <std::pair<int, int>> targets; //координаты целей
+	std::vector <std::pair< int, std::pair< int, int >>> targ_coords; // длинны пути до целей, координаты следующего шага к цели
+	for (int i = 0; i < obj_ptr.size(); i++)
+	{
+		if ( obj_ptr[i] && ( (retclass()=='w' && obj_ptr[i]->retclass() == 'g') || (retclass()=='g' && obj_ptr[i]->retclass()=='c') ) )
+		{
+			std::pair<int, int> buf;
+			buf.first = obj_ptr[i]->retX();
+			buf.second = obj_ptr[i]->retY();
+			targets.push_back(buf);
+		}
+	}
+	for (int i = 0; i < targets.size(); i++)
+	{
+		fill_grid(obj_ptr);
+		targ_coords.push_back(lee(pos_x, pos_y, targets[i].first, targets[i].second));
+	}
+	std::pair<int, int> food_coords;
+	int min_length = 1000;
+	for (int i = 0; i < targ_coords.size(); i++)
+	{
+		if (targ_coords[i].first >= 0 && targ_coords[i].first <= get_R() && targ_coords[i].first< min_length)
+		{
+			min_length = targ_coords[i].first;
+			food_coords.first = targets[i].first;
+			food_coords.second = targets[i].second;
+		}
+	}
+	return(food_coords);
+};

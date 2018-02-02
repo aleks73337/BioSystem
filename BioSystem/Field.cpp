@@ -13,7 +13,7 @@ void Field::print_field()
     for(auto obj: objects)
 	{
        int X,Y;
-	   if (obj == nullptr) { continue; };
+	   if (!obj) { continue; };
        X=obj->retX();
        Y=obj->retY();
        fld[X][Y]=obj->retclass();
@@ -32,7 +32,7 @@ void Field::add_object(Object* obj_p)
 };
 void Field::live_()
 {
-	int len = objects.size();
+	size_t len = objects.size();
     for(int i=0;i<len;i++)
     {
 		if (objects[i] && objects[i]->live(&objects) == false)

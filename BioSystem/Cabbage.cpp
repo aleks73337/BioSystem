@@ -1,18 +1,18 @@
 #include "Cabbage.h"
 const int Cabbage::R = 5;
-const int Cabbage::age_death = 20;
-const int Cabbage::rep_age = 15;
+const int Cabbage::age_death = 10;
+const int Cabbage::rep_age = 3;
 
 Cabbage::Cabbage(int _pos_x, int _pos_y, int _age) : Object(_pos_x, _pos_y, _age) {};
 
 bool Cabbage::live(std::vector<Object*> *obj_ptr)
 {
 	age++;
-	if (age == age_death)
+	if (age >= age_death)
 	{
 		return false;
 	}
-    if(age>rep_age)
+    if(age==rep_age)
     {
         reproduct(obj_ptr);
 		return true;
