@@ -1,7 +1,7 @@
 #pragma once
 #include "Animal.h"
 #include <map>
-int Animal::grid[50][50] = { 0 };
+int Animal::grid[XMAX][YMAX] = { 0 };
 Animal::Animal(const int& _pos_x, const int& _pos_y, const int& _age, const int& _satiety, const int& _gender) : Object(_pos_x, _pos_y, _age), satiety(_satiety), gender(_gender) {};
 
 std::pair<int,std::pair<int,int>> Animal::lee(int& ax, int& ay, int& bx, int& by)   // поиск пути из €чейки (ax, ay) в €чейку (bx, by)
@@ -98,13 +98,13 @@ void Animal::eat(std::pair<int, int>& food_coords, std::vector<Object*>& obj_ptr
 		{
 			if (retclass() == 'w' && obj->retclass() == 'g')
 			{
-				satiety += 50;
+				satiety += 40;
 				delete obj;
 				obj = nullptr;
 			}
 			if (retclass() == 'g' && obj->retclass() == 'c')
 			{
-				satiety += 20;
+				satiety += 30;
 				delete obj;
 				obj = nullptr;
 			}
@@ -115,7 +115,7 @@ void Animal::eat(std::pair<int, int>& food_coords, std::vector<Object*>& obj_ptr
 bool Animal::live(std::vector<Object *> *obj_ptr)
 {
 	satiety -= get_hunger();
-	age++;
+	++age;
 	if (satiety <= 0 || age==get_age_death())
 	{
 		return false;
@@ -124,18 +124,18 @@ bool Animal::live(std::vector<Object *> *obj_ptr)
 	{
 		fill_grid(*obj_ptr);
 		std::pair<int, int> food_coords = find_food(*obj_ptr);
-		if (food_coords.first == 0 && food_coords.second == 0) { return true; }
+		if (food_coords.first == 0 && food_coords.second == 0)  return true;
 		move(food_coords.first, food_coords.second, *obj_ptr);
-		if (pos_x == food_coords.first && pos_y == food_coords.second)
-			eat(food_coords, *obj_ptr);
+		if (pos_x == food_coords.first && pos_y == food_coords.second) eat(food_coords, *obj_ptr);
 		return true;
 	}
-	else if (retAge() == get_rep_age())
+	else if (retAge() %get_rep_age()==0)
 	{
 		fill_grid(*obj_ptr);
 		reproduct(obj_ptr);
 		return true;
 	}
+	return true;
 }
 
 std::pair<int, int> Animal::find_food(std::vector<Object*>& obj_ptr)

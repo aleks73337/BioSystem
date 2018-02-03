@@ -5,7 +5,7 @@
 #include <vector>
 #include <iostream>
 
-const int XMAX=50;
+const int XMAX=20;
 const int YMAX=50;
 
 class Object
@@ -14,7 +14,6 @@ protected:
 	int pos_x;
 	int pos_y;
 	int age;
-	const static int R;
 	static int grid[XMAX][YMAX];
 	static void fill_grid(std::vector<Object*>& obj_ptr);
 
