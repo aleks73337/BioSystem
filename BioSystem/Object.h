@@ -5,7 +5,7 @@
 #include <vector>
 #include <iostream>
 
-const int XMAX=20;
+const int XMAX=50;
 const int YMAX=50;
 
 class Object

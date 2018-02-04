@@ -1,32 +1,20 @@
 #include "Field.h"
-#include <algorithm> 
-
-void Field::print_field()
+std::vector<sf::RectangleShape> Field::print_field()
 {
-	for (int i = 0; i < XMAX; i++)
+	std::vector<sf::RectangleShape> disp_object;
+	for (auto& obj : objects)
 	{
-		for (int j = 0; j < YMAX; j++)
-		{
-			field[i][j] = '_';
-		}
+		sf::RectangleShape rectangle(sf::Vector2f(10, 10));
+		rectangle.setPosition(obj->retX() * 10, obj->retY() * 10);
+		if (obj->retclass() == 'c')
+			rectangle.setFillColor(sf::Color::Green);
+		if (obj->retclass() == 'g')
+			rectangle.setFillColor(sf::Color::White);
+		if (obj->retclass() == 'w')
+			rectangle.setFillColor(sf::Color::Red);
+		disp_object.push_back(rectangle);
 	}
-
-	for ( int i = 0; i < objects.size() ; ++i )
-	{
-		if (objects[i])
-		{
-			field[objects[i]->retX()][objects[i]->retY()] = objects[i]->retclass();
-		}
-	}
-
-	for (int i = 0; i < XMAX; i++)
-	{
-		for (int j = 0; j < YMAX; j++)
-		{
-			std::cout<<field[i][j];
-		}
-		std::cout << std::endl;
-	}
+	return(disp_object);
 
 };
 
@@ -51,7 +39,7 @@ void Field::live_()
 	do
 	{
 		flag = false;
-		for (std::vector<Object*>::const_iterator it = objects.begin() + 1;
+		for (std::vector<Object*>::const_iterator it = objects.begin();
 			it != objects.end();++it)
 		{
 			if (!(*it))

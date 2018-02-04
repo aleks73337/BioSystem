@@ -3,7 +3,7 @@
 Wolf::Wolf(const int& _pos_x, const int& _pos_y, const int& _age, const int& satiety, const int& _gender) : Animal(_pos_x, _pos_y, _age, satiety, _gender) {};
 const int Wolf::age_death = 60;
 const int Wolf::R = 30;
-const int Wolf::rep_age = 40;
+const int Wolf::rep_age = 20;
 const int Wolf::hunger = 3;
 const int Wolf::get_age_death() { return age_death; };
 const int Wolf::get_rep_age() {return rep_age;};
