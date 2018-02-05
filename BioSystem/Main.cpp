@@ -1,17 +1,20 @@
 #include "Field.h"
 #include <iostream>
+#include <SFML\System.hpp>
+int counter;
 
 int main()
 {
+	srand(1);
 	setlocale(LC_ALL, "RUS");
 	Field field;
-	for (int i = 0; i < 40; i++)
+	for (int i = 0; i < 300; i++)
 	{
 		field.add_object(new Cabbage(rand()%XMAX, rand()%YMAX, 0));
-		if (i<20)
+		if (i<32)
 			field.add_object(new Goat(rand() % XMAX, rand() % YMAX, 0, 50, 0));
-		if (i<5)
-			field.add_object(new Wolf(rand() % XMAX, rand() % YMAX, 0, 50, 0));
+		if (i<15)
+			field.add_object(new Wolf(rand()%XMAX,rand()%YMAX , 0, 50, 0));
 	}
 	sf::RenderWindow window(sf::VideoMode(XMAX*10, YMAX*10), "Field");
 	while (window.isOpen())
@@ -29,6 +32,9 @@ int main()
 		{
 			window.draw(rectangle);
 		}
+		counter++;
+		if (counter<1000)
 		window.display();
+		//sf::sleep(sf::milliseconds(100));
 	}
 }

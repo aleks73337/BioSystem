@@ -1,9 +1,9 @@
 #include "Goat.h"
 #include <map>
 #include <vector>
-const int Goat::R = 20;
-const int Goat::age_death = 60;
-const int Goat::rep_age = 10;
+const int Goat::R = 7;
+const int Goat::age_death = 35;
+const int Goat::rep_age = 16;
 const int Goat::hunger = 2;
 
 Goat::Goat(const int& _pos_x, const int& _pos_y, const int& _age, const int& _satiety, const int& _gender) : Animal(_pos_x, _pos_y, _age, _satiety, _gender) {};

@@ -1,7 +1,7 @@
 #pragma once
 #include "Animal.h"
-#include <map>
-int Animal::grid[XMAX][YMAX] = { 0 };
+#include <algorithm>
+
 Animal::Animal(const int& _pos_x, const int& _pos_y, const int& _age, const int& _satiety, const int& _gender) : Object(_pos_x, _pos_y, _age), satiety(_satiety), gender(_gender) {};
 
 std::pair<int,std::pair<int,int>> Animal::lee(int& ax, int& ay, int& bx, int& by)   // поиск пути из €чейки (ax, ay) в €чейку (bx, by)
@@ -44,7 +44,7 @@ std::pair<int,std::pair<int,int>> Animal::lee(int& ax, int& ay, int& bx, int& by
 					}
 				}
 		++d;
-	} while (!stop && grid[by][bx] == BLANK);
+	} while (!stop && grid[by][bx] == BLANK && d<=get_R() );
 
 	if (grid[ay][ax] == WALL || grid[by][bx] == WALL) //путь не найден
 	{
@@ -104,7 +104,7 @@ void Animal::eat(std::pair<int, int>& food_coords, std::vector<Object*>& obj_ptr
 			}
 			if (retclass() == 'g' && obj->retclass() == 'c')
 			{
-				satiety += 30;
+				satiety += 20;
 				delete obj;
 				obj = nullptr;
 			}
@@ -129,7 +129,7 @@ bool Animal::live(std::vector<Object *> *obj_ptr)
 		if (pos_x == food_coords.first && pos_y == food_coords.second) eat(food_coords, *obj_ptr);
 		return true;
 	}
-	else if (retAge() %get_rep_age()==0)
+	else if ( retAge() % get_rep_age() == 0)
 	{
 		fill_grid(*obj_ptr);
 		reproduct(obj_ptr);
@@ -144,7 +144,7 @@ std::pair<int, int> Animal::find_food(std::vector<Object*>& obj_ptr)
 	std::vector <std::pair< int, std::pair< int, int >>> targ_coords; // длинны пути до целей, координаты следующего шага к цели
 	for (int i = 0; i < obj_ptr.size(); i++)
 	{
-		if ( obj_ptr[i] && ( (retclass()=='w' && obj_ptr[i]->retclass() == 'g') || (retclass()=='g' && obj_ptr[i]->retclass()=='c') ) )
+		if ( obj_ptr[i] &&( (retclass()=='w' && obj_ptr[i]->retclass() == 'g' && (pow(obj_ptr[i]->retX() - retX(),2) + pow(obj_ptr[i]->retY() - retY(),2) < pow(get_R(),2))) || (retclass()=='g' && obj_ptr[i]->retclass()=='c'&& (pow(obj_ptr[i]->retX() - retX(), 2) + pow(obj_ptr[i]->retY() - retY(), 2) < pow(get_R(), 2) ))))
 		{
 			std::pair<int, int> buf;
 			buf.first = obj_ptr[i]->retX();

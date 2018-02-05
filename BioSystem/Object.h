@@ -5,8 +5,8 @@
 #include <vector>
 #include <iostream>
 
-const int XMAX=50;
-const int YMAX=50;
+const int XMAX=80;
+const int YMAX=80;
 
 class Object
 {
@@ -16,7 +16,6 @@ protected:
 	int age;
 	static int grid[XMAX][YMAX];
 	static void fill_grid(std::vector<Object*>& obj_ptr);
-
 public:
         virtual void reproduct(std::vector<Object*> *obj_ptr)=0;
         virtual bool live(std::vector<Object*> *obj_ptr)=0;
@@ -24,5 +23,6 @@ public:
 		virtual char retclass()=0;
 		virtual int retX();
 		virtual int retY();
+		virtual const int get_R() = 0;
 	Object(const int& _pos_x, const int& _pos_y, const int& _age);
 };

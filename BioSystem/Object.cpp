@@ -4,7 +4,8 @@
 Object::Object(const int& _pos_x, const int& _pos_y, const int& _age) : pos_x(_pos_x), pos_y(_pos_y), age(_age) {};
 int Object::retAge() { return (age); };
 int Object::retX() { return(pos_x); };
-int Object::retY() { return(pos_y); }
+int Object::retY() { return(pos_y); };
+int Object::grid[XMAX][YMAX] = { 0 };
 
 void Object::fill_grid(std::vector<Object*>& obj_ptr)
 {
@@ -15,9 +16,9 @@ void Object::fill_grid(std::vector<Object*>& obj_ptr)
 			grid[i][j] = -2;
 		}
 	}
-	for (int i = 0; i < obj_ptr.size(); ++i)
+	for (auto& obj: obj_ptr)
 	{
-		if (obj_ptr[i])
-			grid[obj_ptr[i]->retX()][obj_ptr[i]->retY()] = -1;
+		if (obj)
+			grid[obj->retX()][obj->retY()] = -1;
 	}
 };

@@ -10,7 +10,6 @@ protected:
 		std::pair<int, std::pair<int, int>> lee(int & ax, int & ay, int & bx, int & by);
 		virtual const int get_age_death() = 0;
 		virtual const int get_rep_age() = 0;
-		virtual const int get_R() = 0;
 		virtual const int get_hunger() = 0;
 public:
 	virtual void move(int& p_x, int& p_y, std::vector<Object*>& obj_ptr);
