@@ -1,9 +1,9 @@
 #include "Wolf.h"
 
 Wolf::Wolf(const int& _pos_x, const int& _pos_y, const int& _age, const int& satiety, const int& _gender) : Animal(_pos_x, _pos_y, _age, satiety, _gender) {};
-const int Wolf::age_death = 60;
-const int Wolf::R = 30;
-const int Wolf::rep_age = 20;
+const int Wolf::age_death = 70;
+const int Wolf::R = 20;
+const int Wolf::rep_age = 12;
 const int Wolf::hunger = 3;
 const int Wolf::get_age_death() { return age_death; };
 const int Wolf::get_rep_age() {return rep_age;};
@@ -23,7 +23,7 @@ void Wolf::reproduct(std::vector<Object*> *obj_ptr)
 			int y = pos_y + dy[k];
 			if (x>0 && x<XMAX && y>0 && y<YMAX && grid[x][y] == -2)
 			{
-				obj_ptr->push_back(new Wolf(x, y, 0, 100, 0));
+				obj_ptr->push_back(new Wolf(x, y, 0, 50, 0));
 				return;
 			}
 		}

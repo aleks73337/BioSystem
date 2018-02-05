@@ -1,0 +1,40 @@
+﻿  Animal.cpp
+Animal.cpp(4): warning C4356: Object::grid: статические данные-член не могут быть инициализированы в производном классе
+Animal.cpp(145): warning C4018: <: несоответствие типов со знаком и без знака
+Animal.cpp(155): warning C4018: <: несоответствие типов со знаком и без знака
+Animal.cpp(162): warning C4018: <: несоответствие типов со знаком и без знака
+  Cabbage.cpp
+  Field.cpp
+Field.cpp(8): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+Field.cpp(28): warning C4018: <: несоответствие типов со знаком и без знака
+  Goat.cpp
+  Main.cpp
+  Object.cpp
+Object.cpp(18): warning C4018: <: несоответствие типов со знаком и без знака
+  Wolf.cpp
+Field.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: static class sf::Color const sf::Color::White" (__imp_?White@Color@sf@@2V12@B)"
+Field.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: void __thiscall sf::Transformable::setPosition(float,float)" (__imp_?setPosition@Transformable@sf@@QAEXMM@Z)"
+Field.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: static class sf::Color const sf::Color::Red" (__imp_?Red@Color@sf@@2V12@B)"
+Field.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: static class sf::Color const sf::Color::Green" (__imp_?Green@Color@sf@@2V12@B)"
+Field.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) private: virtual void __thiscall sf::Shape::draw(class sf::RenderTarget &,class sf::RenderStates)const " (__imp_?draw@Shape@sf@@EBEXAAVRenderTarget@2@VRenderStates@2@@Z)"
+Field.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: void __thiscall sf::Shape::setFillColor(class sf::Color const &)" (__imp_?setFillColor@Shape@sf@@QAEXABVColor@2@@Z)"
+Field.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: virtual class sf::Vector2<float> __thiscall sf::RectangleShape::getPoint(unsigned int)const " (__imp_?getPoint@RectangleShape@sf@@UBE?AV?$Vector2@M@2@I@Z)"
+Field.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: virtual unsigned int __thiscall sf::RectangleShape::getPointCount(void)const " (__imp_?getPointCount@RectangleShape@sf@@UBEIXZ)"
+Field.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: __thiscall sf::RectangleShape::RectangleShape(class sf::Vector2<float> const &)" (__imp_??0RectangleShape@sf@@QAE@ABV?$Vector2@M@1@@Z)"
+Field.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: __thiscall sf::RectangleShape::RectangleShape(class sf::RectangleShape const &)" (__imp_??0RectangleShape@sf@@QAE@ABV01@@Z)"
+Field.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: virtual __thiscall sf::RectangleShape::~RectangleShape(void)" (__imp_??1RectangleShape@sf@@UAE@XZ)"
+Main.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: static class sf::RenderStates const sf::RenderStates::Default" (__imp_?Default@RenderStates@sf@@2V12@B)"
+Main.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: virtual __thiscall sf::RenderWindow::~RenderWindow(void)" (__imp_??1RenderWindow@sf@@UAE@XZ)"
+Main.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: __thiscall sf::RenderWindow::RenderWindow(class sf::VideoMode,class sf::String const &,unsigned int,struct sf::ContextSettings const &)" (__imp_??0RenderWindow@sf@@QAE@VVideoMode@1@ABVString@1@IABUContextSettings@1@@Z)"
+Main.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: __thiscall sf::Color::Color(unsigned char,unsigned char,unsigned char,unsigned char)" (__imp_??0Color@sf@@QAE@EEEE@Z)"
+Main.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: void __thiscall sf::Window::display(void)" (__imp_?display@Window@sf@@QAEXXZ)"
+Main.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: bool __thiscall sf::Window::pollEvent(class sf::Event &)" (__imp_?pollEvent@Window@sf@@QAE_NAAVEvent@2@@Z)"
+Main.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: bool __thiscall sf::Window::isOpen(void)const " (__imp_?isOpen@Window@sf@@QBE_NXZ)"
+Main.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: void __thiscall sf::Window::close(void)" (__imp_?close@Window@sf@@QAEXXZ)"
+Main.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: void __thiscall sf::RenderTarget::draw(class sf::Drawable const &,class sf::RenderStates const &)" (__imp_?draw@RenderTarget@sf@@QAEXABVDrawable@2@ABVRenderStates@2@@Z)"
+Main.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: void __thiscall sf::RenderTarget::clear(class sf::Color const &)" (__imp_?clear@RenderTarget@sf@@QAEXABVColor@2@@Z)"
+Main.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: __thiscall sf::String::String(char const *,class std::locale const &)" (__imp_??0String@sf@@QAE@PBDABVlocale@std@@@Z)"
+Main.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: __thiscall sf::VideoMode::VideoMode(unsigned int,unsigned int,unsigned int)" (__imp_??0VideoMode@sf@@QAE@III@Z)"
+Main.obj : error LNK2001: неразрешенный внешний символ ""__declspec(dllimport) public: __thiscall sf::String::~String(void)" (__imp_??1String@sf@@QAE@XZ)"
+MSVCRT.lib(exe_winmain.obj) : error LNK2001: неразрешенный внешний символ "_WinMain@16"
+C:\Users\1\Desktop\Программирование\BioSystem\Release\BioSystem.exe : fatal error LNK1120: неразрешенных внешних элементов: 25

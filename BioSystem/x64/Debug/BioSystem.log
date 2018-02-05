@@ -1,2 +1,12 @@
-﻿  Main.cpp
+﻿  Wolf.cpp
+  Object.cpp
+  Main.cpp
+  Goat.cpp
+  Cabbage.cpp
+  Animal.cpp
+  Создание кода...
+  Компиляция...
+  Field.cpp
+c:\users\1\desktop\программирование\biosystem\biosystem\field.cpp(8): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  Создание кода...
   BioSystem.vcxproj -> C:\Users\1\Desktop\Программирование\BioSystem\x64\Debug\BioSystem.exe

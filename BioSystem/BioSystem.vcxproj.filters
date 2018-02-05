@@ -50,10 +50,10 @@
     <ClInclude Include="Goat.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Wolf.h">
+    <ClInclude Include="Field.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Field.h">
+    <ClInclude Include="Wolf.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

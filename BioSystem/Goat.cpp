@@ -1,5 +1,4 @@
 #include "Goat.h"
-#include <map>
 #include <vector>
 const int Goat::R = 7;
 const int Goat::age_death = 35;
@@ -32,5 +31,3 @@ void Goat::reproduct(std::vector<Object *> *obj_ptr)
 		}
 	}
 };
-
-
