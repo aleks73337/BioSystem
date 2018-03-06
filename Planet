@@ -1,0 +1,10 @@
+#include "Planet.h"
+#include <math.h>
+long int Planet::time = 0;
+Planet::Planet(const int& id, const int& x_, const int& y_, const double& radius_) :
+			   planet_id(id), x_0(x_), y_0(y_), radius(radius_), image(20) {};
+void Planet::cord_count()
+{
+	x = x_0 + radius * cos(speed*time);
+	y = y_0 + radius * sin(speed*time);
+}
