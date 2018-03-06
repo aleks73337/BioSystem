@@ -1,0 +1,50 @@
+
+#include "Planet.h"
+#include <iostream>
+#include <windows.h> 
+int XMAX = GetSystemMetrics(SM_CXSCREEN);
+int YMAX = GetSystemMetrics(SM_CYSCREEN);
+
+int main()
+{
+	std::vector<std::string> file_names = { "Render_sun.png","3dmer.png", "3dvena.png", "3dearth.png", "3dmar.png", "3djup.png","3dsat.png", "3dura.png", "3dnep.png" };
+	sf::RenderWindow window(sf::VideoMode(XMAX,YMAX), "SFML works!", sf::Style::Fullscreen);
+	std::vector<Planet> system;
+	for (int i = 0; i < 9; i++)
+	{ 
+		Planet planet(i, XMAX / 2, YMAX / 2, 45 * i);
+		system.push_back(planet);
+		system[i].texture.loadFromFile(file_names[i]);
+		system[i].image.setTexture(&(system[i].texture));
+	}
+	system[0].speed = 0;
+	system[1].speed = 0.0078;
+	system[2].speed = 0.0041;
+	system[3].speed = 0.00297;
+	system[4].speed = 0.00195;
+	system[5].speed = 0.00057;
+	system[6].speed = 0.00032;
+	system[7].speed = 0.00015;
+	system[8].speed = 0.000099;
+	while (window.isOpen())
+	{
+		sf::Event event;
+		while (window.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed || sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+				window.close();
+		}
+		window.clear();
+		for (int i = 0; i < 9; i++)
+		{
+			system[i].cord_count();
+			system[i].image.setPosition(system[i].x, system[i].y);
+			window.draw(system[i].image);
+		}
+		window.display();
+		//sf::sleep(sf::milliseconds(100));
+		Planet::time++;
+	}
+
+	return 0;
+}
